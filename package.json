@@ -1,0 +1,18 @@
+{
+  "name": "blendercap-lender-search-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static BlenderCap lender search demo.",
+  "scripts": {
+    "build": "node --check app.js && node scripts/verify-static-site.js",
+    "dev": "npx serve .",
+    "start": "python -m http.server 8080",
+    "verify": "npm run build"
+  },
+  "keywords": [
+    "blendercap",
+    "lender-search",
+    "static-site"
+  ],
+  "license": "UNLICENSED"
+}
