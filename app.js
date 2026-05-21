@@ -438,7 +438,7 @@ function calculateFit(lender, scenario) {
   if (scenario.ltv > 0 && scenario.ltv <= lender.maxLtv) {
     score += 7;
     notes.push(`Requested ${scenario.ltv}% LTV is within this lender's limit.`);
-  } else if (scenario.ltv <= lender.maxLtv + 5) {
+  } else if (scenario.ltv > 0 && scenario.ltv <= lender.maxLtv + 5) {
     score += 3;
   }
 
