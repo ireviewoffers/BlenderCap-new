@@ -194,21 +194,27 @@ const presets = {
     loanProduct: "Bridge loan",
     urgency: "fast",
   },
-  rehab: {
-    searchPath: "Residential",
-    loanPurpose: "Renovation / rehab",
-    amount: 650000,
-    propertyType: "Single family 1-4 units",
-    occupancy: "Investment property",
-    city: "Chicago",
-    state: "IL",
-    creditScore: 620,
-    ltv: 72,
-    documentation: "Stated income",
-    borrowerType: "Investor",
-    loanProduct: "Hard money",
-    urgency: "fast",
-  },
+};
+
+const propertyTypesByPath = {
+  Residential: [
+    "Single family 1-4 units",
+    "Condo",
+    "Townhome",
+    "Lots",
+    "Manufactured housing",
+  ],
+  Commercial: [
+    "Office",
+    "Retail",
+    "Industrial",
+    "Church",
+    "Hospitality",
+    "Mixed use",
+    "Land / lot",
+    "Gas station",
+    "Cannabis facility",
+  ],
 };
 
 const stateRegions = {
@@ -351,6 +357,25 @@ function getScenario() {
     urgency: getFormValue(scenarioForm, "urgency", "standard"),
     locationLabel: formatLocation(city, state),
   };
+}
+
+function updatePropertyTypeOptions(searchPath, selectedPropertyType = "") {
+  const propertyTypeField = scenarioForm.elements.propertyType;
+  const propertyTypes =
+    propertyTypesByPath[searchPath] || propertyTypesByPath.Residential;
+  const selectedValue = propertyTypes.includes(selectedPropertyType)
+    ? selectedPropertyType
+    : propertyTypes[0];
+
+  propertyTypeField.replaceChildren(
+    ...propertyTypes.map((propertyType) => {
+      const option = document.createElement("option");
+      option.value = propertyType;
+      option.textContent = propertyType;
+      return option;
+    }),
+  );
+  propertyTypeField.value = selectedValue;
 }
 
 function getFilters() {
@@ -686,6 +711,8 @@ function setPreset(presetName) {
     return;
   }
 
+  updatePropertyTypeOptions(preset.searchPath, preset.propertyType);
+
   Object.entries(preset).forEach(([name, value]) => {
     const field = scenarioForm.elements[name];
     if (field) {
@@ -807,7 +834,11 @@ function renderAll() {
 
 lenderCount.textContent = lenders.length;
 
-scenarioForm.addEventListener("input", () => {
+scenarioForm.addEventListener("input", (event) => {
+  if (event.target.name === "searchPath") {
+    updatePropertyTypeOptions(event.target.value);
+  }
+
   updateActivePreset();
   renderAll();
 });
@@ -859,4 +890,8 @@ dialog.addEventListener("click", (event) => {
   }
 });
 
+updatePropertyTypeOptions(
+  getFormValue(scenarioForm, "searchPath", "Residential"),
+  getFormValue(scenarioForm, "propertyType", "Single family 1-4 units"),
+);
 renderAll();

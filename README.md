@@ -5,8 +5,7 @@ options. The demo is a static web app configured for Vercel hosting.
 
 ## What is included
 
-- Guided borrower scenario builder with residential, commercial, and rehab
-  investor presets.
+- Guided borrower scenario builder with residential and commercial presets.
 - Step 1 borrower-search fields for loan purpose, amount, property type,
   occupancy, location, FICO, LTV, documentation, borrower type, product type,
   and closing speed.
