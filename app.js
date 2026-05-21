@@ -2,147 +2,272 @@ const lenders = [
   {
     id: "atlas-commercial-capital",
     name: "Atlas Commercial Capital",
-    type: "CRE",
+    type: "Commercial",
     location: "National",
     description:
-      "Bridge and permanent debt for stabilized retail, multifamily, and industrial properties.",
+      "Bridge and permanent debt for stabilized retail, mixed-use, and industrial properties.",
     minAmount: 1000000,
     maxAmount: 25000000,
     rate: 7.1,
     closeDays: 24,
     baseFit: 96,
-    collateral: ["Real estate", "Business assets"],
+    loanPurposes: ["Purchase", "Refinance", "Bridge loan"],
+    propertyTypes: ["Retail", "Industrial", "Mixed use", "Office"],
+    occupancyTypes: ["Non-owner-occupied", "Investment property"],
+    documentationTypes: ["Full doc", "DSCR", "Bank statement"],
+    borrowerTypes: ["Business entity / LLC", "Investor"],
+    productTypes: ["Bridge loan", "Private money"],
+    minCreditScore: 660,
+    maxLtv: 70,
     strengths: [
       "Comfortable with complex commercial real estate collateral.",
       "National footprint keeps geography from becoming a blocker.",
       "Good fit for larger requests that need institutional execution.",
     ],
-    tags: ["Bridge", "Multifamily", "Industrial"],
+    tags: ["Bridge", "Mixed use", "Industrial"],
   },
   {
-    id: "harbor-sba-partners",
-    name: "Harbor SBA Partners",
-    type: "SBA",
+    id: "harbor-residential-funding",
+    name: "Harbor Residential Funding",
+    type: "Residential",
     location: "West Coast",
     description:
-      "Owner-occupied real estate and acquisition financing with SBA 7(a) and 504 programs.",
+      "Non-QM and bank-statement residential loans for purchases, refinances, and second homes.",
     minAmount: 250000,
-    maxAmount: 5000000,
+    maxAmount: 3500000,
     rate: 8.4,
     closeDays: 42,
     baseFit: 89,
-    collateral: ["Real estate", "Business assets", "Operating cash flow"],
+    loanPurposes: ["Purchase", "Refinance", "Cash-out refinance"],
+    propertyTypes: ["Single family 1-4 units", "Condo", "Townhome"],
+    occupancyTypes: ["Owner-occupied", "Second home", "Investment property"],
+    documentationTypes: ["Full doc", "Bank statement", "DSCR"],
+    borrowerTypes: ["Individual borrower", "Self-employed", "Investor"],
+    productTypes: ["Non-QM"],
+    minCreditScore: 640,
+    maxLtv: 80,
     strengths: [
-      "Strong SBA fit for owner-occupied properties and acquisitions.",
-      "Best for borrowers that can support standard SBA documentation.",
-      "Useful when lower down payment is more important than closing speed.",
+      "Strong Non-QM fit for borrower scenarios that need flexible income review.",
+      "Supports owner-occupied, second-home, and investment residential deals.",
+      "Useful when bank-statement documentation is part of the intake.",
     ],
-    tags: ["SBA 7(a)", "Owner-occupied", "Acquisition"],
+    tags: ["Non-QM", "Bank statement", "Owner-occupied"],
   },
   {
-    id: "northline-equipment-finance",
-    name: "Northline Equipment Finance",
-    type: "Equipment",
+    id: "northline-rehab-finance",
+    name: "Northline Rehab Finance",
+    type: "Residential",
     location: "Midwest",
     description:
-      "Fast approvals for yellow iron, fleet, manufacturing, and medical equipment purchases.",
-    minAmount: 75000,
-    maxAmount: 3500000,
-    rate: 6.8,
+      "Hard-money financing for fix-and-flip, renovation, and small residential investor projects.",
+    minAmount: 100000,
+    maxAmount: 2500000,
+    rate: 9.6,
     closeDays: 10,
     baseFit: 93,
-    collateral: ["Equipment", "Business assets"],
+    loanPurposes: ["Purchase", "Renovation / rehab", "Bridge loan"],
+    propertyTypes: ["Single family 1-4 units", "Condo", "Townhome", "Lots"],
+    occupancyTypes: ["Non-owner-occupied", "Investment property"],
+    documentationTypes: ["Stated income", "No doc", "DSCR"],
+    borrowerTypes: ["Investor", "Business entity / LLC", "Foreign national"],
+    productTypes: ["Hard money", "Bridge loan"],
+    minCreditScore: 600,
+    maxLtv: 75,
     strengths: [
-      "Specialized equipment underwriting shortens review cycles.",
-      "Strong match when the equipment itself is the primary collateral.",
-      "Fast close profile works well for time-sensitive purchases.",
+      "Hard-money underwriting supports distressed and time-sensitive purchases.",
+      "Fast close profile works well for auction or wholesale flip timelines.",
+      "Can evaluate investor scenarios with lighter income documentation.",
     ],
-    tags: ["Fleet", "Manufacturing", "Medical"],
+    tags: ["Hard money", "Rehab", "Investor"],
   },
   {
-    id: "bluepeak-working-capital",
-    name: "BluePeak Working Capital",
-    type: "Working Capital",
+    id: "bluepeak-private-money",
+    name: "BluePeak Private Money",
+    type: "Residential",
     location: "National",
     description:
-      "Flexible revolving lines for growth-stage companies with repeat revenue and seasonal demand.",
+      "Asset-based private money for cash-out refinances, bridge loans, and investor rentals.",
     minAmount: 100000,
-    maxAmount: 2000000,
-    rate: 9.2,
+    maxAmount: 5000000,
+    rate: 10.2,
     closeDays: 7,
     baseFit: 85,
-    collateral: ["Operating cash flow", "Business assets"],
+    loanPurposes: ["Cash-out refinance", "Bridge loan", "Refinance"],
+    propertyTypes: ["Single family 1-4 units", "Condo", "Townhome", "Manufactured housing"],
+    occupancyTypes: ["Non-owner-occupied", "Investment property"],
+    documentationTypes: ["No doc", "Stated income", "DSCR"],
+    borrowerTypes: ["Investor", "Foreign national", "Business entity / LLC"],
+    productTypes: ["Private money", "Bridge loan"],
+    minCreditScore: null,
+    maxLtv: 65,
     strengths: [
-      "Useful for quick liquidity needs and seasonal working capital gaps.",
-      "National coverage supports borrowers outside a single bank footprint.",
-      "Fastest sample lender for scenarios where speed matters most.",
+      "Asset-based underwriting can work when FICO is not the primary filter.",
+      "National coverage supports borrowers outside a single regional footprint.",
+      "Fastest sample lender for scenarios where closing speed matters most.",
     ],
-    tags: ["Revolving line", "Seasonal", "Growth"],
+    tags: ["Private money", "No doc", "Fast close"],
   },
   {
-    id: "summit-private-credit",
-    name: "Summit Private Credit",
-    type: "CRE",
+    id: "summit-development-credit",
+    name: "Summit Development Credit",
+    type: "Commercial",
     location: "Southeast",
     description:
-      "Structured private credit for construction takeouts, value-add assets, and complex sponsors.",
+      "Structured private credit for construction, development, value-add assets, and complex sponsors.",
     minAmount: 5000000,
     maxAmount: 60000000,
     rate: 8.1,
     closeDays: 18,
     baseFit: 91,
-    collateral: ["Real estate"],
+    loanPurposes: ["Construction", "Development", "Bridge loan"],
+    propertyTypes: ["Office", "Retail", "Industrial", "Hospitality", "Mixed use", "Land / lot"],
+    occupancyTypes: ["Non-owner-occupied", "Investment property"],
+    documentationTypes: ["Full doc", "Bank statement", "DSCR"],
+    borrowerTypes: ["Business entity / LLC", "Investor", "Foreign national"],
+    productTypes: ["Construction loan", "Private money", "Bridge loan"],
+    minCreditScore: 680,
+    maxLtv: 70,
     strengths: [
       "Handles larger and more structured commercial real estate requests.",
-      "Private credit profile fits value-add and construction takeout stories.",
+      "Private credit profile fits value-add, construction, and development stories.",
       "Can move faster than a traditional bank on complex collateral.",
     ],
-    tags: ["Private credit", "Value-add", "Takeout"],
+    tags: ["Construction", "Development", "Value-add"],
   },
   {
-    id: "keystone-business-bank",
-    name: "Keystone Business Bank",
-    type: "Working Capital",
+    id: "keystone-investor-bank",
+    name: "Keystone Investor Bank",
+    type: "Commercial",
     location: "Northeast",
     description:
-      "Relationship banking for established operators seeking term loans and operating lines.",
+      "Relationship lender for commercial investors seeking DSCR, refinance, and stabilized property loans.",
     minAmount: 500000,
     maxAmount: 10000000,
     rate: 7.6,
     closeDays: 30,
     baseFit: 88,
-    collateral: ["Business assets", "Operating cash flow", "Real estate"],
+    loanPurposes: ["Purchase", "Refinance", "Cash-out refinance"],
+    propertyTypes: ["Office", "Retail", "Mixed use", "Church", "Gas station"],
+    occupancyTypes: ["Owner-occupied", "Non-owner-occupied", "Investment property"],
+    documentationTypes: ["Full doc", "DSCR"],
+    borrowerTypes: ["Business entity / LLC", "Investor", "Self-employed"],
+    productTypes: ["Private money", "Non-QM"],
+    minCreditScore: 650,
+    maxLtv: 75,
     strengths: [
-      "Relationship-bank profile fits established operating companies.",
-      "Balances pricing and structure for term loans or operating lines.",
-      "Good option when the borrower values bank relationship support.",
+      "Relationship-lender profile fits established property operators.",
+      "Balances pricing and structure for DSCR or stabilized refinance requests.",
+      "Good option when the borrower values lender support over maximum speed.",
     ],
-    tags: ["Term loan", "Operating line", "Bank"],
+    tags: ["DSCR", "Refinance", "Relationship"],
   },
 ];
 
 const presets = {
-  property: {
-    product: "CRE",
+  residential: {
+    searchPath: "Residential",
+    loanPurpose: "Purchase",
     amount: 2500000,
-    region: "National",
+    propertyType: "Single family 1-4 units",
+    occupancy: "Owner-occupied",
+    city: "Los Angeles",
+    state: "CA",
+    creditScore: 700,
+    ltv: 75,
+    documentation: "Bank statement",
+    borrowerType: "Self-employed",
+    loanProduct: "Non-QM",
     urgency: "standard",
-    collateral: "Real estate",
   },
-  equipment: {
-    product: "Equipment",
-    amount: 850000,
-    region: "Midwest",
+  commercial: {
+    searchPath: "Commercial",
+    loanPurpose: "Bridge loan",
+    amount: 8500000,
+    propertyType: "Mixed use",
+    occupancy: "Investment property",
+    city: "Atlanta",
+    state: "GA",
+    creditScore: 690,
+    ltv: 68,
+    documentation: "DSCR",
+    borrowerType: "Business entity / LLC",
+    loanProduct: "Bridge loan",
     urgency: "fast",
-    collateral: "Equipment",
   },
-  growth: {
-    product: "Working Capital",
-    amount: 1200000,
-    region: "Northeast",
-    urgency: "fast",
-    collateral: "Operating cash flow",
-  },
+};
+
+const propertyTypesByPath = {
+  Residential: [
+    "Single family 1-4 units",
+    "Condo",
+    "Townhome",
+    "Lots",
+    "Manufactured housing",
+  ],
+  Commercial: [
+    "Office",
+    "Retail",
+    "Industrial",
+    "Church",
+    "Hospitality",
+    "Mixed use",
+    "Land / lot",
+    "Gas station",
+    "Cannabis facility",
+  ],
+};
+
+const stateRegions = {
+  AK: "West Coast",
+  AL: "Southeast",
+  AR: "Southeast",
+  AZ: "West Coast",
+  CA: "West Coast",
+  CO: "West Coast",
+  CT: "Northeast",
+  DE: "Northeast",
+  FL: "Southeast",
+  GA: "Southeast",
+  HI: "West Coast",
+  IA: "Midwest",
+  ID: "West Coast",
+  IL: "Midwest",
+  IN: "Midwest",
+  KS: "Midwest",
+  KY: "Southeast",
+  LA: "Southeast",
+  MA: "Northeast",
+  MD: "Northeast",
+  ME: "Northeast",
+  MI: "Midwest",
+  MN: "Midwest",
+  MO: "Midwest",
+  MS: "Southeast",
+  MT: "West Coast",
+  NC: "Southeast",
+  ND: "Midwest",
+  NE: "Midwest",
+  NH: "Northeast",
+  NJ: "Northeast",
+  NM: "West Coast",
+  NV: "West Coast",
+  NY: "Northeast",
+  OH: "Midwest",
+  OK: "Midwest",
+  OR: "West Coast",
+  PA: "Northeast",
+  RI: "Northeast",
+  SC: "Southeast",
+  SD: "Midwest",
+  TN: "Southeast",
+  TX: "Southeast",
+  UT: "West Coast",
+  VA: "Southeast",
+  VT: "Northeast",
+  WA: "West Coast",
+  WI: "Midwest",
+  WV: "Southeast",
+  WY: "West Coast",
 };
 
 const storageKey = "blendercap-demo-shortlist";
@@ -184,19 +309,73 @@ function formatAmountRange(lender) {
   return `${formatAmount(lender.minAmount)} - ${formatAmount(lender.maxAmount)}`;
 }
 
+function getRegionForState(state) {
+  return stateRegions[state] || "National";
+}
+
+function formatLocation(city, state) {
+  const trimmedCity = city.trim();
+
+  if (state === "National") {
+    return trimmedCity || "National";
+  }
+
+  return trimmedCity ? `${trimmedCity}, ${state}` : state;
+}
+
 function getFormValue(form, name, fallback = "") {
   const formData = new FormData(form);
   return String(formData.get(name) || fallback);
 }
 
 function getScenario() {
+  const city = getFormValue(scenarioForm, "city");
+  const state = getFormValue(scenarioForm, "state", "National");
+
   return {
-    product: getFormValue(scenarioForm, "product", "CRE"),
+    searchPath: getFormValue(scenarioForm, "searchPath", "Residential"),
+    loanPurpose: getFormValue(scenarioForm, "loanPurpose", "Purchase"),
     amount: Number(getFormValue(scenarioForm, "amount", "0")),
-    region: getFormValue(scenarioForm, "region", "National"),
+    propertyType: getFormValue(
+      scenarioForm,
+      "propertyType",
+      "Single family 1-4 units",
+    ),
+    occupancy: getFormValue(scenarioForm, "occupancy", "Owner-occupied"),
+    city,
+    state,
+    region: getRegionForState(state),
+    creditScore: Number(getFormValue(scenarioForm, "creditScore", "0")),
+    ltv: Number(getFormValue(scenarioForm, "ltv", "0")),
+    documentation: getFormValue(scenarioForm, "documentation", "Full doc"),
+    borrowerType: getFormValue(
+      scenarioForm,
+      "borrowerType",
+      "Individual borrower",
+    ),
+    loanProduct: getFormValue(scenarioForm, "loanProduct", "Non-QM"),
     urgency: getFormValue(scenarioForm, "urgency", "standard"),
-    collateral: getFormValue(scenarioForm, "collateral", "Real estate"),
+    locationLabel: formatLocation(city, state),
   };
+}
+
+function updatePropertyTypeOptions(searchPath, selectedPropertyType = "") {
+  const propertyTypeField = scenarioForm.elements.propertyType;
+  const propertyTypes =
+    propertyTypesByPath[searchPath] || propertyTypesByPath.Residential;
+  const selectedValue = propertyTypes.includes(selectedPropertyType)
+    ? selectedPropertyType
+    : propertyTypes[0];
+
+  propertyTypeField.replaceChildren(
+    ...propertyTypes.map((propertyType) => {
+      const option = document.createElement("option");
+      option.value = propertyType;
+      option.textContent = propertyType;
+      return option;
+    }),
+  );
+  propertyTypeField.value = selectedValue;
 }
 
 function getFilters() {
@@ -209,52 +388,83 @@ function getFilters() {
 }
 
 function calculateFit(lender, scenario) {
-  let score = Math.round(lender.baseFit * 0.18);
+  let score = Math.round(lender.baseFit * 0.08);
   const notes = [];
 
-  if (lender.type === scenario.product) {
-    score += 30;
-    notes.push(`Product match for ${scenario.product}.`);
-  } else if (
-    scenario.product === "SBA" &&
-    lender.collateral.includes("Real estate") &&
-    lender.maxAmount <= 10000000
-  ) {
+  if (lender.type === scenario.searchPath) {
+    score += 18;
+    notes.push(`${lender.type} lender path matches the borrower search.`);
+  }
+
+  if (lender.loanPurposes.includes(scenario.loanPurpose)) {
     score += 10;
-    notes.push("Possible SBA-adjacent fit for real estate-backed request.");
+    notes.push(`Supports ${scenario.loanPurpose.toLowerCase()} requests.`);
+  }
+
+  if (lender.productTypes.includes(scenario.loanProduct)) {
+    score += 12;
+    notes.push(`Offers ${scenario.loanProduct.toLowerCase()} financing.`);
   }
 
   if (scenario.amount >= lender.minAmount && scenario.amount <= lender.maxAmount) {
-    score += 25;
+    score += 14;
     notes.push(`Loan size fits the ${formatAmountRange(lender)} range.`);
   } else if (scenario.amount < lender.minAmount && lender.minAmount - scenario.amount <= 500000) {
-    score += 10;
+    score += 6;
     notes.push("Requested amount is near this lender's minimum.");
   } else if (scenario.amount <= lender.maxAmount) {
-    score += 8;
+    score += 5;
     notes.push("Lender has enough maximum capacity for the request.");
   }
 
   if (lender.location === "National" || scenario.region === "National") {
-    score += 12;
+    score += 8;
     notes.push("National coverage supports the selected region.");
   } else if (lender.location === scenario.region) {
-    score += 15;
+    score += 10;
     notes.push(`Regional focus matches ${scenario.region}.`);
   }
 
-  const targetDays = { fast: 14, standard: 45, flexible: 90 }[scenario.urgency];
+  const targetDays = { fast: 14, standard: 29, flexible: 60 }[scenario.urgency];
   if (lender.closeDays <= targetDays) {
-    score += 15;
+    score += 9;
     notes.push(`Estimated ${lender.closeDays}-day close fits the timeline.`);
   } else if (lender.closeDays <= targetDays + 14) {
-    score += 7;
+    score += 4;
     notes.push("Close speed is close to the requested timeline.");
   }
 
-  if (lender.collateral.includes(scenario.collateral)) {
+  if (lender.propertyTypes.includes(scenario.propertyType)) {
     score += 10;
-    notes.push(`Underwrites ${scenario.collateral.toLowerCase()} collateral.`);
+    notes.push(`Underwrites ${scenario.propertyType.toLowerCase()} property.`);
+  }
+
+  if (lender.occupancyTypes.includes(scenario.occupancy)) {
+    score += 7;
+  }
+
+  if (lender.documentationTypes.includes(scenario.documentation)) {
+    score += 7;
+  }
+
+  if (lender.borrowerTypes.includes(scenario.borrowerType)) {
+    score += 6;
+  }
+
+  if (lender.minCreditScore === null) {
+    score += 6;
+    notes.push("Asset-based underwriting does not require a minimum FICO.");
+  } else if (scenario.creditScore >= lender.minCreditScore) {
+    score += 6;
+  } else if (lender.minCreditScore - scenario.creditScore <= 40) {
+    score += 3;
+  }
+
+  if (scenario.ltv > 0 && scenario.ltv <= lender.maxLtv) {
+    score += 7;
+    notes.push(`Requested ${scenario.ltv}% LTV is within this lender's limit.`);
+  } else if (scenario.ltv > 0 && scenario.ltv <= lender.maxLtv + 5) {
+    score += 3;
   }
 
   return {
@@ -279,6 +489,12 @@ function lenderMatchesSearch(lender, filters) {
     lender.type,
     lender.location,
     lender.description,
+    ...lender.loanPurposes,
+    ...lender.propertyTypes,
+    ...lender.occupancyTypes,
+    ...lender.documentationTypes,
+    ...lender.borrowerTypes,
+    ...lender.productTypes,
     ...lender.tags,
     ...lender.strengths,
   ]
@@ -326,15 +542,22 @@ function createDefinition(label, value) {
 function renderScenarioSummary() {
   const scenario = getScenario();
   scenarioSummary.replaceChildren(
-    createDefinition("Need", scenario.product),
+    createDefinition("Search", scenario.searchPath),
+    createDefinition("Purpose", scenario.loanPurpose),
     createDefinition("Amount", formatAmount(scenario.amount)),
-    createDefinition("Region", scenario.region),
+    createDefinition("Property", scenario.propertyType),
+    createDefinition("Occupancy", scenario.occupancy),
+    createDefinition("Location", scenario.locationLabel),
+    createDefinition("FICO / LTV", `${scenario.creditScore} / ${scenario.ltv}%`),
+    createDefinition("Docs", scenario.documentation),
+    createDefinition("Borrower", scenario.borrowerType),
+    createDefinition("Product", scenario.loanProduct),
     createDefinition(
-      "Timeline",
+      "Close speed",
       {
-        fast: "ASAP",
-        standard: "30 to 45 days",
-        flexible: "Flexible",
+        fast: "7-14 days",
+        standard: "14-29 days",
+        flexible: "30+ days",
       }[scenario.urgency],
     ),
   );
@@ -488,6 +711,8 @@ function setPreset(presetName) {
     return;
   }
 
+  updatePropertyTypeOptions(preset.searchPath, preset.propertyType);
+
   Object.entries(preset).forEach(([name, value]) => {
     const field = scenarioForm.elements[name];
     if (field) {
@@ -561,7 +786,12 @@ function buildShortlistSummary() {
 
   const lines = [
     "BlenderCap demo shortlist",
-    `Scenario: ${scenario.product}, ${formatAmount(scenario.amount)}, ${scenario.region}`,
+    `Scenario: ${scenario.searchPath}, ${scenario.loanPurpose}, ${formatAmount(
+      scenario.amount,
+    )}, ${scenario.locationLabel}`,
+    `Property: ${scenario.propertyType}, ${scenario.occupancy}, ${scenario.ltv}% LTV`,
+    `Borrower: ${scenario.borrowerType}, ${scenario.creditScore} FICO, ${scenario.documentation}`,
+    `Product: ${scenario.loanProduct}`,
     "",
     ...savedLenders.map(
       (lender) =>
@@ -604,7 +834,11 @@ function renderAll() {
 
 lenderCount.textContent = lenders.length;
 
-scenarioForm.addEventListener("input", () => {
+scenarioForm.addEventListener("input", (event) => {
+  if (event.target.name === "searchPath") {
+    updatePropertyTypeOptions(event.target.value);
+  }
+
   updateActivePreset();
   renderAll();
 });
@@ -656,4 +890,8 @@ dialog.addEventListener("click", (event) => {
   }
 });
 
+updatePropertyTypeOptions(
+  getFormValue(scenarioForm, "searchPath", "Residential"),
+  getFormValue(scenarioForm, "propertyType", "Single family 1-4 units"),
+);
 renderAll();
